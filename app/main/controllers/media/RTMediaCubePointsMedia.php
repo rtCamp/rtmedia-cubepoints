@@ -45,7 +45,7 @@ class RTMediaCubePointsMedia {
         // Creating sub-tab array
         $sub_tabs[] = array(
             'href' => '#rtmedia-cubepoints',
-            'icon' => 'rtmicon-star',
+            'icon' => 'dashicons-star-filled',
             'title' => __( 'rtMedia CubePoints', 'rtmedia' ),
             'name' => __( 'CubePoints', 'rtmedia' ),
             'callback' => array( $this, 'rtmedia_cubepoints_admin_content' )
@@ -59,21 +59,16 @@ class RTMediaCubePointsMedia {
      */
     public function rtmedia_cubepoints_admin_content() {
         ?>
-	    <div class="postbox metabox-holder">
-            <h3 class="hndle">
-                <span>CubePoints Settings</span>
-            </h3>
-	    </div>
-	    <div class="row">
-            <div class="columns large-12">
-                <?php if( function_exists("cp_module_register") ) { ?>
-                    <fieldset>
-                        <legend>CubePoints</legend>
-                        <p><?php _e( 'Setup', 'rtmedia' ); ?> CubePoints <a href="<?php echo get_admin_url(); ?>admin.php?page=cp_admin_config#rtmedia-cp" target="_blank"><?php _e( 'here', 'rtmedia'); ?></a>.</p>
-                    </fieldset>
-                <?php } ?>
-            </div>
-	    </div>
+        <div class="rtm-option-wrapper">
+            <h3 class="rtm-option-title">CubePoints Settings</h3>
+            <table class="form-table">
+                <tbody>
+                    <tr>
+                        <th><?php _e( 'Setup', 'rtmedia' ); ?> CubePoints <a href="<?php echo get_admin_url(); ?>admin.php?page=cp_admin_config#rtmedia-cp" target="_blank"><?php _e( 'here', 'rtmedia'); ?></a>.</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <?php
     }
     
