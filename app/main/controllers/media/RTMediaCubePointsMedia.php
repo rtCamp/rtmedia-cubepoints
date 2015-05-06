@@ -64,7 +64,11 @@ class RTMediaCubePointsMedia {
             <table class="form-table">
                 <tbody>
                     <tr>
-                        <th><?php _e( 'Setup', 'rtmedia' ); ?> CubePoints <a href="<?php echo get_admin_url(); ?>admin.php?page=cp_admin_config#rtmedia-cp" target="_blank"><?php _e( 'here', 'rtmedia'); ?></a>.</th>
+                        <?php if( function_exists( "cp_module_register" ) ) { ?>
+                            <th><?php _e( 'Setup', 'rtmedia' ); ?> CubePoints <a href="<?php echo get_admin_url(); ?>admin.php?page=cp_admin_config#rtmedia-cp" target="_blank"><?php _e( 'here', 'rtmedia'); ?></a>.</th>
+                        <?php } else { ?>
+                            <td><a href="http://wordpress.org/plugins/cubepoints/" target="_blank">CubePoints</a><?php echo ' ' . __( 'must be installed or activated.', 'rtmedia' ); ?></td>
+                        <?php } ?>
                     </tr>
                 </tbody>
             </table>
