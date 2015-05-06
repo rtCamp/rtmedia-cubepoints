@@ -30,10 +30,12 @@ if ( ! class_exists( 'EDD_SL_Plugin_Updater' ) ){
 		 * @return void
 		 */
 		function __construct( $_api_url, $_plugin_file, $_api_data = null ) {
+            $plugin_basename_exploded = explode( '/', $_plugin_file );
+            
 			$this->api_url  = trailingslashit( $_api_url );
 			$this->api_data = urlencode_deep( $_api_data );
-			$this->name     = plugin_basename( $_plugin_file );
-			$this->slug     = basename( $_plugin_file, '.php' );
+			$this->name     = $_plugin_file;
+			$this->slug     = $plugin_basename_exploded[ 0 ];
 			$this->version  = $_api_data[ 'version' ];
 
 			// Set up hooks.
