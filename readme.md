@@ -7,11 +7,11 @@ Use this lib as a subtree in your rtMedia add-on.
 
 To use this lib, first add this repo as a remote.
 
-	`git remote add rtm-pi-subtree git@git.rtcamp.com:rtmedia/rtm-plugin-installer.git`
+	git remote add rtm-pi-subtree git@git.rtcamp.com:rtmedia/rtm-plugin-installer.git
 
 Run following command to add remote repo as subtree
 
-	`git subtree add --prefix=lib/plugin-installer rtm-pi-subtree master`
+	git subtree add --prefix=lib/plugin-installer rtm-pi-subtree master
 
 ## Resources for subtree:
 
