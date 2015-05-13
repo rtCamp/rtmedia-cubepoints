@@ -13,6 +13,10 @@ Run following command to add remote repo as subtree
 
 	git subtree add --prefix=lib/plugin-installer rtm-pi-subtree master
 
+To pull changes subtree, run following command
+
+	git subtree pull --prefix=lib/plugin-installer rtm-pi-subtree master
+
 ## Resources for subtree:
 
 [subtree explained on wpveda](http://wpveda.com/git/subtree.html)
