@@ -82,9 +82,7 @@ class RTMediaCubePointsMedia {
             // Regestering module for rtMedia activities
             cp_module_register( __( 'Points for rtMedia', 'cp' ), 'rtmedia', '1.0', '<a id="rtmedia-cp" href="http://rtcamp.com/">rtCamp</a>', 'http://rtcamp.com/?utm_source=dashboard&utm_medium=plugin&utm_campaign=buddypress-media', 'http://rtcamp.com/', __( 'Points for add photos, videos or music.', 'cp' ), 1 );
             
-            if( !cp_module_activated( 'rtmedia' ) ) {
-                add_action( 'cp_module_rtmedia_activate', array( $this, 'cp_rtmedia_install' ) );
-            }
+            add_action( 'cp_module_rtmedia_activate', array( $this, 'cp_rtmedia_install' ) );
             
             if( cp_module_activated( 'rtmedia' ) ) {
                 //$this->configure_cp_rtmedia_options();
@@ -96,7 +94,7 @@ class RTMediaCubePointsMedia {
             }
             
             // bind actions dynamically
-            $rtmedia_points = maybe_unserialize( get_site_option( "rtmedia_points" ) );
+            $rtmedia_points = maybe_unserialize( get_site_option( "rtmedia_points", array() ) );
             
             if( is_array( $rtmedia_points ) && sizeof( $rtmedia_points ) > 0 ) {
                 foreach( $rtmedia_points as $key => $val ) {
@@ -115,7 +113,7 @@ class RTMediaCubePointsMedia {
     }
     
     public function cp_rtmedia_install() {
-        $rtmedia_points = maybe_unserialize( get_site_option( "rtmedia_points" ) );
+        $rtmedia_points = maybe_unserialize( get_site_option( "rtmedia_points", array() ) );
         
         if( !is_array( $rtmedia_points ) ) {
             $rtmedia_points = array();
@@ -167,7 +165,7 @@ class RTMediaCubePointsMedia {
     }
     
     public function cp_rtmedia_config_process() {
-        $rtmedia_points = maybe_unserialize( get_site_option( "rtmedia_points" ) );
+        $rtmedia_points = maybe_unserialize( get_site_option( "rtmedia_points", array() ) );
 	
         foreach( $rtmedia_points as $key => $val ) {
             $rtmedia_points[ $key ][ 'points' ][ 'cp_points' ] = ( int ) $_POST[ 'rtmedia_points' ][ $key ];
@@ -177,7 +175,7 @@ class RTMediaCubePointsMedia {
     }
     
     public function __call( $name, $arguments ) {
-        $rtmedia_points = maybe_unserialize( get_site_option( "rtmedia_points" ) );
+        $rtmedia_points = maybe_unserialize( get_site_option( "rtmedia_points", array() ) );
 	
         if( is_array( $rtmedia_points ) && sizeof( $rtmedia_points ) > 0 ) {
             if( function_exists( "cp_module_register" ) ) {
