@@ -14,6 +14,7 @@
 class RTMediaCubePointsEDDLicense {
     
     public $config = array(
+        'product_id' => 'rtmedia_cubepoints',
 		'product_name' => 'rtMedia CubePoints',
 		'license_key' => 'edd_rtmedia_cubepoints_license_key',
 		'license_status' => 'edd_rtmedia_cubepoints_license_status',
@@ -30,71 +31,26 @@ class RTMediaCubePointsEDDLicense {
 		}
 
 		add_action( 'admin_init', array( $this, 'edd_sl_sample_plugin_updater' ) );
-		add_action( 'rtmedia_addon_license_details', array( $this, 'edd_sample_license_page' ), 10 );
+		add_filter( 'rtmedia_license_tabs', array( $this, 'add_rtmedia_license_tabs' ), 10, 1 );
 		add_action( 'admin_init', array( $this, 'edd_sample_activate_license' ) );
 		add_action( 'admin_init', array( $this, 'edd_sample_deactivate_license' ) );
 	}
 
-	function edd_sample_license_page() {
-		$license = get_option( $this->config['license_key'] );
-		$status  = get_option( $this->config['license_status'] );
-
-		if ( $status !== false && $status == 'valid' ){
-			$status_class = 'rtm-addon-status-activated';
-			$status_value = __( 'Activated', 'rtmedia' );
-		} else {
-			$status_class = 'rtm-addon-status-deactivated';
-			$status_value = __( 'Deactivated', 'rtmedia' );
-		}
-		?>
-		<div class="rtm-addon-license">
-			<div class="row">
-				<div class="columns large-12 rtm-addon-license-status"><span class="rtm-addon-license-status-label"><?php echo $this->config['product_name'] ?>:</span>
-					<span
-						class="rtm-addon-license-status <?php echo $status_class ?>"><?php echo $status_value; ?></span>
-				</div>
-			</div>
-			<div class="row">
-				<div class="columns large-12">
-					<form method="post">
-						<table class="form-table">
-							<tbody>
-							<tr valign="top">
-								<th scope="row" valign="top">
-									<?php _e( 'License Key', 'rtmedia' ); ?>
-								</th>
-								<td>
-									<input id="<?php echo $this->config['license_key']; ?>" name="<?php echo $this->config['license_key']; ?>" type="text"
-										   class="regular-text" value="<?php esc_attr_e( $license ); ?>"/>
-								</td>
-							</tr>
-							<?php if ( false !== $license ){ ?>
-								<tr valign="top">
-									<th scope="row" valign="top">
-										<?php _e( 'Activate / Deactivate License', 'rtmedia' ); ?>
-									</th>
-									<td>
-										<?php if ( $status !== false && $status == 'valid' ){ ?>
-											<?php wp_nonce_field( $this->config['nonce_field_name'], $this->config['nonce_field_name'] ); ?>
-											<input type="submit" class="button-secondary" name="<?php echo $this->config['license_deactivate_btn_name'] ?>"
-												   value="<?php _e( 'Deactivate License', 'rtmedia' ); ?>"/>
-										<?php
-										} else {
-											wp_nonce_field( $this->config['nonce_field_name'], $this->config['nonce_field_name'] ); ?>
-											<input type="submit" class="button-secondary" name="<?php echo $this->config['license_activate_btn_name'] ?>"
-												   value="<?php _e( 'Activate License', 'rtmedia' ); ?>"/>
-										<?php } ?>
-									</td>
-								</tr>
-							<?php } ?>
-							</tbody>
-						</table>
-						<?php submit_button( 'Save Key' ); ?>
-					</form>
-				</div>
-			</div>
-		</div>
-	<?php
+	function add_rtmedia_license_tabs( $tabs ){
+		$tabs[] = array(
+			'title' => $this->config['product_name'],
+			'name' => $this->config['product_name'],
+			'href' => '#rtmedia-cubepoints',
+			'args' => array(
+				'addon_id' => $this->config['product_id'],
+				'key_id' => $this->config['license_key'],
+				'status_id' => $this->config['license_status'],
+				'license_key' => get_option( $this->config['license_key'] ),
+				'status' => get_option( $this->config['license_status'] ),
+			),
+		);
+        
+		return $tabs;
 	}
 
 	function edd_sl_sample_plugin_updater() {
