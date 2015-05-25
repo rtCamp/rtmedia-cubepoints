@@ -16,6 +16,7 @@ class RTMediaCubePointsEDDLicense {
     public $config = array(
         'product_id' => 'rtmedia_cubepoints',
 		'product_name' => 'rtMedia CubePoints',
+        'product_href' => 'rtmedia-cubepoints',
 		'license_key' => 'edd_rtmedia_cubepoints_license_key',
 		'license_status' => 'edd_rtmedia_cubepoints_license_status',
 		'nonce_field_name' => 'edd_rtmedia_cubepoints_nonce',
@@ -40,7 +41,7 @@ class RTMediaCubePointsEDDLicense {
 		$tabs[] = array(
 			'title' => $this->config['product_name'],
 			'name' => $this->config['product_name'],
-			'href' => '#rtmedia-cubepoints',
+			'href' => '#' . $this->config['product_href'],
 			'args' => array(
 				'addon_id' => $this->config['product_id'],
 				'key_id' => $this->config['license_key'],
