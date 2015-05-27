@@ -82,6 +82,7 @@ function rtmedia_cubepoints_loader( $class_construct ) {
 	 * as it might break some functionality
 	 */
 	if( defined( 'RTMEDIA_PRO_PATH' ) ){
+                add_action( 'admin_notices', 'rtmedia_pubepoints_pro_active_notice' );
 		return $class_construct;
 	}
 
@@ -91,6 +92,15 @@ function rtmedia_cubepoints_loader( $class_construct ) {
     $class_construct[ 'CubePointsMedia' ] = false;
     
     return $class_construct;
+}
+function rtmedia_pubepoints_pro_active_notice(){
+	?>
+		<div class="error">
+			<p>
+				<strong>rtMedia CubePoints </strong> plugin is not effective as rtMedia Pro is active. Please deactivate rtMedia Pro in order to make rtMedia Cube Points plugin work.
+			</p>
+		</div>
+	<?php
 }
 
 /**
