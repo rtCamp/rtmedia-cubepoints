@@ -76,6 +76,15 @@ function rtmedia_cubepoints_autoloader( $class_name ) {
 }
 
 function rtmedia_cubepoints_loader( $class_construct ) {
+
+	/*
+	 * do not load classes of rtMedia Pro is activated
+	 * as it might break some functionality
+	 */
+	if( defined( 'RTMEDIA_PRO_PATH' ) ){
+		return $class_construct;
+	}
+
     require_once RTMEDIA_CUBEPOINTS_PATH . 'app/RTMediaCubePoints.php';
     
     $class_construct[ 'CubePoints' ] = false;
