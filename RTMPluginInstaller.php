@@ -74,7 +74,7 @@ if( ! class_exists( 'RTMPluginInstaller' ) ){
 					$nonce = wp_create_nonce( 'rtm_plugin_installer_activate_plugin_' . $path );
 
 					$admin_notice .= __( "not activated. Click", "rtmedia" ) . " ";
-					$admin_notice .= '<a href="#" class="rtm-plugin-installer" data-mode="activate" data-slug="buddypress-media" data-nonce="'. $nonce .'">' . __( "here", "rtmedia" ) . '</a> ';
+					$admin_notice .= '<a href="#" class="rtm-plugin-installer" data-mode="activate" data-slug="rtMedia" data-nonce="'. $nonce .'">' . __( "here", "rtmedia" ) . '</a> ';
 					$admin_notice .= __( 'to activate rtMedia.', 'rtmedia' );
 				}
 			}
