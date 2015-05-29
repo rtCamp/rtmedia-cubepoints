@@ -97,10 +97,14 @@ function rtmedia_pubepoints_pro_active_notice(){
 	?>
 		<div class="error">
 			<p>
-				<strong>rtMedia CubePoints </strong> plugin is not effective as rtMedia Pro is active. Please deactivate rtMedia Pro in order to make rtMedia Cube Points plugin work.
+				<strong>rtMedia CubePoints</strong> plugin cannot be activated with rtMedia Pro. Please <strong><a href="https://rtcamp.com/blog/rtmedia-pro-splitting-major-change" target="_blank">read this</a></strong> for more details. You may <strong><a href="https://rtcamp.com/premium-support/" target="_blank">contact support for help</a></strong>.
 			</p>
 		</div>
 	<?php
+	// automatic deactivate plugin if rtMedia Pro is active and current user can deactivate plugin.
+	if( current_user_can( 'activate_plugins' ) ){
+		deactivate_plugins( RTMEDIA_CUBEPOINTS_BASE_NAME );
+	}
 }
 
 /**
