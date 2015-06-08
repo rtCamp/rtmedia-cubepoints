@@ -1,0 +1,114 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: rtMedia CubePoints\n"
+"POT-Creation-Date: 2015-06-08 15:50+0530\n"
+"PO-Revision-Date: 2015-06-08 15:50+0530\n"
+"Last-Translator: \n"
+"Language-Team: rtMedia <info@rtcamp.com>\n"
+"Language: en_IN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
+"_n_noop:1,2;_x:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;_ex:1,2c;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_c();"
+"_nc:4c,1,2\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../app/main/controllers/media/RTMediaCubePointsMedia.php:49
+msgid "rtMedia CubePoints"
+msgstr ""
+
+#: ../app/main/controllers/media/RTMediaCubePointsMedia.php:50
+msgid "CubePoints"
+msgstr ""
+
+#: ../app/main/controllers/media/RTMediaCubePointsMedia.php:68
+msgid "Setup"
+msgstr ""
+
+#: ../app/main/controllers/media/RTMediaCubePointsMedia.php:68
+#: ../lib/plugin-installer/RTMPluginInstaller.php:61
+#: ../lib/plugin-installer/RTMPluginInstaller.php:69
+#: ../lib/plugin-installer/RTMPluginInstaller.php:77
+msgid "here"
+msgstr ""
+
+#: ../app/main/controllers/media/RTMediaCubePointsMedia.php:70
+msgid "must be installed or activated."
+msgstr ""
+
+#: ../app/main/controllers/media/RTMediaCubePointsMedia.php:83
+#: ../app/main/controllers/media/RTMediaCubePointsMedia.php:151
+msgid "Points for rtMedia"
+msgstr ""
+
+#: ../app/main/controllers/media/RTMediaCubePointsMedia.php:83
+msgid "Points for add photos, videos or music."
+msgstr ""
+
+#: ../lib/plugin-installer/RTMPluginInstaller.php:36
+#: ../lib/plugin-installer/RTMPluginInstaller.php:42
+msgid "rtMedia for WordPress, BuddyPress and bbPress"
+msgstr ""
+
+#: ../lib/plugin-installer/RTMPluginInstaller.php:56
+msgid "rtMedia Add-on(s)"
+msgstr ""
+
+#: ../lib/plugin-installer/RTMPluginInstaller.php:56
+msgid "won't work if rtMedia is"
+msgstr ""
+
+#: ../lib/plugin-installer/RTMPluginInstaller.php:60
+msgid "not installed. Click"
+msgstr ""
+
+#: ../lib/plugin-installer/RTMPluginInstaller.php:62
+msgid "to install rtMedia."
+msgstr ""
+
+#: ../lib/plugin-installer/RTMPluginInstaller.php:68
+#: ../lib/plugin-installer/RTMPluginInstaller.php:76
+msgid "not activated. Click"
+msgstr ""
+
+#: ../lib/plugin-installer/RTMPluginInstaller.php:70
+#: ../lib/plugin-installer/RTMPluginInstaller.php:78
+msgid "to activate rtMedia."
+msgstr ""
+
+#: ../lib/plugin-installer/RTMPluginInstaller.php:92
+#: ../lib/plugin-installer/RTMPluginInstaller.php:109
+msgid "ERROR: No slug was passed to the AJAX callback."
+msgstr ""
+
+#: ../lib/plugin-installer/RTMPluginInstaller.php:98
+msgid "ERROR: You lack permissions to install and/or activate plugins."
+msgstr ""
+
+#: ../lib/plugin-installer/RTMPluginInstaller.php:115
+msgid "ERROR: You lack permissions to activate plugins."
+msgstr ""
+
+#: ../lib/plugin-installer/RTMPluginInstaller.php:130
+#, php-format
+msgid "ERROR: Error fetching plugin information: %s"
+msgstr ""
+
+#: ../lib/plugin-installer/RTMPluginInstaller.php:141
+msgid "Please ensure the file system is writable"
+msgstr ""
+
+#: ../lib/plugin-installer/RTMPluginInstaller.php:147
+#, php-format
+msgid "ERROR: Failed to install plugin: %s"
+msgstr ""
+
+#: ../lib/plugin-installer/RTMPluginInstaller.php:153
+#: ../lib/plugin-installer/RTMPluginInstaller.php:161
+#, php-format
+msgid "ERROR: Failed to activate plugin: %s"
+msgstr ""
