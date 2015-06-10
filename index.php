@@ -10,47 +10,47 @@
   Author URI: http://rtcamp.com/?utm_source=dashboard&utm_medium=plugin&utm_campaign=rtmedia-cubepoints
  */
 
-if( !defined( 'RTMEDIA_CUBEPOINTS_PATH' ) ) {
+if ( ! defined( 'RTMEDIA_CUBEPOINTS_PATH' ) ) {
 	/**
 	 *  The server file system path to the plugin directory
 	 */
 	define( 'RTMEDIA_CUBEPOINTS_PATH', plugin_dir_path( __FILE__ ) );
 }
 
-if( !defined( 'RTMEDIA_CUBEPOINTS_URL' ) ) {
+if ( ! defined( 'RTMEDIA_CUBEPOINTS_URL' ) ) {
 	/**
 	 * The url to the plugin directory
 	 */
 	define( 'RTMEDIA_CUBEPOINTS_URL', plugin_dir_url( __FILE__ ) );
 }
 
-if( !defined( 'RTMEDIA_CUBEPOINTS_BASE_NAME' ) ) {
+if ( ! defined( 'RTMEDIA_CUBEPOINTS_BASE_NAME' ) ) {
 	/**
 	 * The base name of the plugin directory
 	 */
 	define( 'RTMEDIA_CUBEPOINTS_BASE_NAME', plugin_basename( __FILE__ ) );
 }
 
-if( !defined( 'RTMEDIA_CUBEPOINTS_VERSION' ) ) {
-    /**
+if ( ! defined( 'RTMEDIA_CUBEPOINTS_VERSION' ) ) {
+	/**
 	 * The version of the plugin
 	 */
 	define( 'RTMEDIA_CUBEPOINTS_VERSION', '1.1' );
 }
 
-if( !defined( 'EDD_RTMEDIA_CUBEPOINTS_STORE_URL' ) ) {
+if ( ! defined( 'EDD_RTMEDIA_CUBEPOINTS_STORE_URL' ) ) {
 	// this is the URL our updater / license checker pings. This should be the URL of the site with EDD installed
 	define( 'EDD_RTMEDIA_CUBEPOINTS_STORE_URL', 'https://rtcamp.com/' );
 }
 
-if( !defined( 'EDD_RTMEDIA_CUBEPOINTS_ITEM_NAME' ) ) {
+if ( ! defined( 'EDD_RTMEDIA_CUBEPOINTS_ITEM_NAME' ) ) {
 	// the name of your product. This should match the download name in EDD exactly
 	define( 'EDD_RTMEDIA_CUBEPOINTS_ITEM_NAME', 'rtMedia CubePoints' );
 }
 
 // define RTMEDIA_DEBUG to true in wp-config.php to debug updates
-if( defined( 'RTMEDIA_DEBUG' ) && RTMEDIA_DEBUG === true ){
-    set_site_transient( 'update_plugins', null );
+if ( defined( 'RTMEDIA_DEBUG' ) && RTMEDIA_DEBUG === true ) {
+	set_site_transient( 'update_plugins', null );
 }
 
 /**
@@ -64,12 +64,12 @@ function rtmedia_cubepoints_autoloader( $class_name ) {
 	$rtlibpath = array(
 		'app/main/controllers/media/' . $class_name . '.php',
 	);
-    
-	foreach( $rtlibpath as $path ) {
+
+	foreach ( $rtlibpath as $path ) {
 		$path = RTMEDIA_CUBEPOINTS_PATH . $path;
-		if ( file_exists( $path ) ){
+		if ( file_exists( $path ) ) {
 			include $path;
-            
+
 			break;
 		}
 	}
@@ -81,19 +81,19 @@ function rtmedia_cubepoints_loader( $class_construct ) {
 	 * do not load classes of rtMedia Pro is activated
 	 * as it might break some functionality
 	 */
-	if( defined( 'RTMEDIA_PRO_PATH' ) ){
-                add_action( 'admin_notices', 'rtmedia_pubepoints_pro_active_notice' );
+	if ( defined( 'RTMEDIA_PRO_PATH' ) ) {
+		add_action( 'admin_notices', 'rtmedia_pubepoints_pro_active_notice' );
 		return $class_construct;
 	}
 
-    require_once RTMEDIA_CUBEPOINTS_PATH . 'app/RTMediaCubePoints.php';
-    
-    $class_construct[ 'CubePoints' ] = false;
-    $class_construct[ 'CubePointsMedia' ] = false;
-    
-    return $class_construct;
+	require_once RTMEDIA_CUBEPOINTS_PATH . 'app/RTMediaCubePoints.php';
+
+	$class_construct['CubePoints'] = false;
+	$class_construct['CubePointsMedia'] = false;
+
+	return $class_construct;
 }
-function rtmedia_pubepoints_pro_active_notice(){
+function rtmedia_pubepoints_pro_active_notice() {
 	?>
 		<div class="error">
 			<p>
@@ -102,7 +102,7 @@ function rtmedia_pubepoints_pro_active_notice(){
 		</div>
 	<?php
 	// automatic deactivate plugin if rtMedia Pro is active and current user can deactivate plugin.
-	if( current_user_can( 'activate_plugins' ) ){
+	if ( current_user_can( 'activate_plugins' ) ) {
 		deactivate_plugins( RTMEDIA_CUBEPOINTS_BASE_NAME );
 	}
 }
@@ -124,6 +124,6 @@ include_once( RTMEDIA_CUBEPOINTS_PATH . 'lib/plugin-installer/RTMPluginInstaller
 
 global $rtm_plugin_installer;
 
-if( empty( $rtm_plugin_installer ) ) {
+if ( empty( $rtm_plugin_installer ) ) {
 	$rtm_plugin_installer = new RTMPluginInstaller();
 }
