@@ -11,24 +11,7 @@ if ( !class_exists( 'RTEDDLicense' ) ) {
 
 	class RTEDDLicense {
 
-		//public $config;
-
-		public $config = array(
-			'rt_product_id' => 'rtmedia_activity_url_preview',
-			'rt_product_name' => 'rtMedia Activity URL Preview',
-			'rt_product_href' => 'rtmedia-activity-url-preview',
-			'rt_license_key' => 'edd_rtmedia_activity_url_preview_license_key',
-			'rt_license_status' => 'edd_rtmedia_activity_url_preview_license_status',
-			'rt_nonce_field_name' => 'edd_rtmedia_activity_url_preview_nonce',
-			'rt_license_activate_btn_name' => 'edd_rtmedia_activity_url_preview_license_activate',
-			'rt_license_deactivate_btn_name' => 'edd_rtmedia_activity_url_preview_license_deactivate',
-			'rt_product_path' => RTMEDIA_ACTIVITY_URL_PREVIEW_PATH,
-			'rt_product_store_url' => EDD_RTMEDIA_ACTIVITY_URL_PREVIEW_STORE_URL,
-			'rt_product_base_name' => RTMEDIA_ACTIVITY_URL_PREVIEW_BASE_NAME,
-			'rt_product_version' => RTMEDIA_ACTIVITY_URL_PREVIEW_VERSION,
-			'rt_item_name' => EDD_RTMEDIA_ACTIVITY_URL_PREVIEW_ITEM_NAME
-
-		);
+		public $config;
 
 		function __construct( $product_details_array ) {
 			$this->config = $product_details_array;
