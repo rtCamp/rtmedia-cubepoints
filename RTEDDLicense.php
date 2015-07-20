@@ -18,7 +18,7 @@ if ( !class_exists( 'RTEDDLicense' ) ) {
 
 			if ( !class_exists( 'RT_EDD_SL_Plugin_Updater' ) ) {
 				// load our custom updater
-				include_once( $this->config[ 'rt_product_path' ] . 'lib/edd-license/RT_EDD_SL_Plugin_Updater.php' );
+				include_once( $this->config[ 'rt_product_path' ] . 'lib/rt-edd-license/RT_EDD_SL_Plugin_Updater.php' );
 			}
 
 			add_action( 'admin_init', array( $this, 'edd_sl_sample_plugin_updater' ) );
