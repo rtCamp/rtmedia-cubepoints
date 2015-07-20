@@ -16,14 +16,14 @@ if ( !class_exists( 'RTEDDLicense' ) ) {
 		function __construct( $product_details_array ) {
 			$this->config = $product_details_array;
 
-			if ( !class_exists( 'RT_EDD_SL_Plugin_Updater' ) ) {
+			if ( !class_exists( 'RTEDDSLPluginUpdater' ) ) {
 				// load our custom updater
-				include_once( $this->config[ 'rt_product_path' ] . 'lib/rt-edd-license/RT_EDD_SL_Plugin_Updater.php' );
+				include_once( $this->config[ 'rt_product_path' ] . 'lib/rt-edd-license/RTEDDSLPluginUpdater.php' );
 			}
 
 			add_action( 'admin_init', array( $this, 'edd_sl_sample_plugin_updater' ) );
 
-			add_filter( $this->config[ 'rt_edd_license_tab_hook' ], array( $this, 'add_rtmedia_license_tabs' ), 10, 1 );
+			add_filter( $this->config[ 'rt_license_hook' ], array( $this, 'add_rtmedia_license_tabs' ), 10, 1 );
 
 			add_action( 'admin_init', array( $this, 'edd_sample_activate_license' ) );
 			add_action( 'admin_init', array( $this, 'edd_sample_deactivate_license' ) );
@@ -51,7 +51,7 @@ if ( !class_exists( 'RTEDDLicense' ) ) {
 			$license_key = trim( get_option( $this->config[ 'rt_license_key' ] ) );
 
 			// setup the updater
-			$edd_updater = new RT_EDD_SL_Plugin_Updater(
+			$edd_updater = new RTEDDSLPluginUpdater(
 				$this->config[ 'rt_product_store_url' ],
 				$this->config[ 'rt_product_base_name' ],
 				array(

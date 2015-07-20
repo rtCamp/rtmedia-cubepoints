@@ -1,8 +1,10 @@
 ## How to add this module in Product
 
-This lib will check plugin update notice.
+**NOTE:** This lib is only for **EDD Products**.
 
-Use this lib as a subtree in your the product.
+This lib will check plugin update notice as well as edd licensing.
+
+Use this lib as a subtree in the product.
 
 To use this lib, first add this repo as a remote.
 
@@ -20,7 +22,7 @@ To pull changes subtree, run following command
 
 **NOTE:** Please use below code in plugin's main file to check update.
 
-* First create **Product Description Array**.
+* First create **Product Details Array**.
 
     For example 
     
@@ -39,7 +41,7 @@ To pull changes subtree, run following command
 	    'rt_product_base_name' => RTMEDIA_PRODUCT_BASE_NAME,
 	    'rt_product_version' => RTMEDIA_PRODUCT_VERSION,
 	    'rt_item_name' => EDD_RTMEDIA_PRODUCT_ITEM_NAME,
-	    'rt_edd_license_tab_hook' => 'rtmedia_license_tabs'
+	    'rt_license_hook' => 'rtmedia_license_tabs'
     );
     ```
     

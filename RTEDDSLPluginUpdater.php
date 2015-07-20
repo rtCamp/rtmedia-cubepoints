@@ -6,9 +6,9 @@
  * Date: 20/7/15
  * Time: 1:42 PM
  */
-if ( !class_exists( 'RT_EDD_SL_Plugin_Updater' ) ) {
+if ( !class_exists( 'RTEDDSLPluginUpdater' ) ) {
 
-	class RT_EDD_SL_Plugin_Updater {
+	class RTEDDSLPluginUpdater {
 
 		private $api_url = '';
 		private $api_data = array();
