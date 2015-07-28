@@ -42,6 +42,7 @@ To pull changes subtree, run following command
 	    'rt_product_version' 			 => RTMEDIA_PRODUCT_VERSION,
 	    'rt_item_name' 					 => EDD_RTMEDIA_PRODUCT_ITEM_NAME,
 	    'rt_license_hook' 				 => 'rtmedia_license_tabs'
+	    'rt_product_text_domain' 		 => 'rt_product_text_domain'
     );
     ```
     
