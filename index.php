@@ -113,9 +113,30 @@ function rtmedia_pubepoints_pro_active_notice() {
 spl_autoload_register( 'rtmedia_cubepoints_autoloader' );
 add_filter( 'rtmedia_class_construct', 'rtmedia_cubepoints_loader' );
 
-// EDD License
-include_once RTMEDIA_CUBEPOINTS_PATH . 'lib/edd-license/RTMediaCubePointsEDDLicense.php';
-new RTMediaCubePointsEDDLicense();
+/*
+ * EDD License
+ */
+include_once( RTMEDIA_CUBEPOINTS_PATH . 'lib/rt-edd-license/RTEDDLicense.php' );
+
+$rtmedia_cubepoints_details = array(
+	'rt_product_id'                  => 'rtmedia_cubepoints',
+	'rt_product_name'                => 'rtMedia CubePoints',
+	'rt_product_href'                => 'rtmedia-cubepoints',
+	'rt_license_key'                 => 'edd_rtmedia_cubepoints_license_key',
+	'rt_license_status'              => 'edd_rtmedia_cubepoints_license_status',
+	'rt_nonce_field_name'            => 'edd_rtmedia_cubepoints_nonce',
+	'rt_license_activate_btn_name'   => 'edd_rtmedia_cubepoints_license_activate',
+	'rt_license_deactivate_btn_name' => 'edd_rtmedia_cubepoints_license_deactivate',
+	'rt_product_path'                => RTMEDIA_CUBEPOINTS_PATH,
+	'rt_product_store_url'           => EDD_RTMEDIA_CUBEPOINTS_STORE_URL,
+	'rt_product_base_name'           => RTMEDIA_CUBEPOINTS_BASE_NAME,
+	'rt_product_version'             => RTMEDIA_CUBEPOINTS_VERSION,
+	'rt_item_name'                   => EDD_RTMEDIA_CUBEPOINTS_ITEM_NAME,
+	'rt_license_hook'                => 'rtmedia_license_tabs',
+	'rt_product_text_domain'         => 'rtmedia'
+);
+
+new RTEDDLicense( $rtmedia_cubepoints_details );
 
 /*
  * One click install/activate rtMedia.
