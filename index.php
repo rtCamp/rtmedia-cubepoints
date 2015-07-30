@@ -4,7 +4,7 @@
   Plugin Name: rtMedia CubePoints
   Plugin URI: https://rtcamp.com/products/rtmedia-cubepoints/
   Description: This plugin provides CubePoints integration with rtMedia.
-  Version: 1.1
+  Version: 1.1.1
   Author: rtCamp
   Text Domain: rtmedia
   Author URI: http://rtcamp.com/?utm_source=dashboard&utm_medium=plugin&utm_campaign=rtmedia-cubepoints
@@ -35,7 +35,7 @@ if ( ! defined( 'RTMEDIA_CUBEPOINTS_VERSION' ) ) {
 	/**
 	 * The version of the plugin
 	 */
-	define( 'RTMEDIA_CUBEPOINTS_VERSION', '1.1' );
+	define( 'RTMEDIA_CUBEPOINTS_VERSION', '1.1.1' );
 }
 
 if ( ! defined( 'EDD_RTMEDIA_CUBEPOINTS_STORE_URL' ) ) {
