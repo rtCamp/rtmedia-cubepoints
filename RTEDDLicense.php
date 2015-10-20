@@ -23,7 +23,9 @@ if ( !class_exists( 'RTEDDLicense' ) ) {
 
 			add_action( 'admin_init', array( $this, 'edd_sl_sample_plugin_updater' ) );
 
-			add_filter( $this->config[ 'rt_license_hook' ], array( $this, 'add_rtmedia_license_tabs' ), 10, 1 );
+			if( ! empty( $this->config[ 'rt_license_hook' ] ) ){
+				add_filter( $this->config[ 'rt_license_hook' ], array( $this, 'add_rtmedia_license_tabs' ), 10, 1 );
+			}
 
 			add_action( 'admin_init', array( $this, 'edd_sample_activate_license' ) );
 			add_action( 'admin_init', array( $this, 'edd_sample_deactivate_license' ) );
