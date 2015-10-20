@@ -57,10 +57,11 @@ if ( !class_exists( 'RTEDDLicense' ) ) {
 				$this->config[ 'rt_product_store_url' ],
 				$this->config[ 'rt_product_base_name' ],
 				array(
-					'version'   => $this->config[ 'rt_product_version' ], // current version number
-					'license'   => $license_key, // license key (used get_option above to retrieve from DB)
-					'item_name' => $this->config[ 'rt_item_name' ], // name of this plugin
-					'author'    => 'rtCamp' // author of this plugin
+					'version'                => $this->config[ 'rt_product_version' ], // current version number
+					'license'                => $license_key, // license key (used get_option above to retrieve from DB)
+					'item_name'              => $this->config[ 'rt_item_name' ], // name of this plugin
+					'author'                 => 'rtCamp', // author of this plugin
+					'rt_product_text_domain' => $this->config[ 'rt_product_text_domain' ] // Text Domain
 				)
 			);
 		}
