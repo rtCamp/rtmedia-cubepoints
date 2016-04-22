@@ -10,10 +10,11 @@ if ( !class_exists( 'RTEDDSLPluginUpdater' ) ) {
 
 	class RTEDDSLPluginUpdater {
 
-		private $api_url = '';
-		private $api_data = array();
-		private $name = '';
-		private $slug = '';
+		private $api_url                = '';
+		private $api_data               = array();
+		private $name                   = '';
+		private $slug                   = '';
+        private $version                = '';
 		private $rt_product_text_domain = '';
 
 		/**
@@ -29,6 +30,8 @@ if ( !class_exists( 'RTEDDSLPluginUpdater' ) ) {
 		 * @return void
 		 */
 		function __construct( $_api_url, $_plugin_file, $_api_data = null ) {
+            global $edd_plugin_data;
+            
 			$plugin_basename_exploded = explode( '/', $_plugin_file );
 
 			$this->api_url                = trailingslashit( $_api_url );
@@ -37,6 +40,8 @@ if ( !class_exists( 'RTEDDSLPluginUpdater' ) ) {
 			$this->slug                   = $plugin_basename_exploded[ 0 ];
 			$this->version                = $_api_data[ 'version' ];
 			$this->rt_product_text_domain = $_api_data[ 'rt_product_text_domain' ];
+            
+            $edd_plugin_data[ $this->slug ] = $this->api_data;
 
 			// Set up hooks.
 			$this->init();
@@ -54,6 +59,8 @@ if ( !class_exists( 'RTEDDSLPluginUpdater' ) ) {
 		public function init() {
 			add_filter( 'pre_set_site_transient_update_plugins', array( $this, 'check_update' ) );
 			add_filter( 'plugins_api', array( $this, 'plugins_api_filter' ), 10, 3 );
+            
+            remove_action( 'after_plugin_row_' . $this->name, 'wp_plugin_update_row', 10, 2 );
 
 			add_action( 'after_plugin_row_' . $this->name, array( $this, 'show_update_notification' ), 10, 2 );
 		}
@@ -169,6 +176,8 @@ if ( !class_exists( 'RTEDDSLPluginUpdater' ) ) {
 				} else {
 					printf( __( 'There is a new version of %1$s available. <a target="_blank" class="thickbox" href="%2$s">View version %3$s details</a> or <a href="%4$s">update now</a>.', $this->rt_product_text_domain ), esc_html( $version_info->name ), esc_url( $changelog_link ), esc_html( $version_info->new_version ), esc_url( wp_nonce_url( self_admin_url( 'update.php?action=upgrade-plugin&plugin=' ) . $this->name, 'upgrade-plugin_' . $this->name ) ) );
 				}
+                
+                do_action( "in_plugin_update_message-{$file}", $plugin, $version_info );
 
 				echo '</div></td></tr>';
 			}
@@ -267,6 +276,8 @@ if ( !class_exists( 'RTEDDSLPluginUpdater' ) ) {
 		}
 
 		public function show_changelog() {
+            global $edd_plugin_data;
+            
 			if ( empty( $_REQUEST[ 'edd_sl_action' ] ) || 'view_plugin_changelog' != $_REQUEST[ 'edd_sl_action' ] ) {
 				return;
 			}
@@ -282,11 +293,38 @@ if ( !class_exists( 'RTEDDSLPluginUpdater' ) ) {
 			if ( !current_user_can( 'update_plugins' ) ) {
 				wp_die( __( 'You do not have permission to install plugin updates', $this->rt_product_text_domain ), __( 'Error', $this->rt_product_text_domain ), array( 'response' => 403 ) );
 			}
+            
+            $data         = $edd_plugin_data[ $_REQUEST['slug'] ];
+            $cache_key    = md5( 'edd_plugin_' . sanitize_key( $_REQUEST['plugin'] ) . '_version_info' );
+            $version_info = get_transient( $cache_key );
+            
+            if( false === $version_info ) {
+                $api_params = array(
+                    'edd_action' => 'get_version',
+                    'item_name'  => isset( $data['item_name'] ) ? $data['item_name'] : false,
+                    'item_id'    => isset( $data['item_id'] ) ? $data['item_id'] : false,
+                    'slug'       => $_REQUEST['slug'],
+                    'author'     => $data['author'],
+                    'url'        => home_url()
+                );
 
-			$response = $this->api_request( 'plugin_latest_version', array( 'slug' => $_REQUEST[ 'slug' ] ) );
+                $request = wp_remote_post( $this->api_url, array( 'timeout' => 15, 'sslverify' => false, 'body' => $api_params ) );
 
-			if ( $response && isset( $response->sections[ 'changelog' ] ) ) {
-				echo '<div style="background:#fff; padding:10px;">' . $response->sections[ 'changelog' ] . '</div>';
+                if ( ! is_wp_error( $request ) ) {
+                    $version_info = json_decode( wp_remote_retrieve_body( $request ) );
+                }
+
+                if ( ! empty( $version_info ) && isset( $version_info->sections ) ) {
+                    $version_info->sections = maybe_unserialize( $version_info->sections );
+                } else {
+                    $version_info = false;
+                }
+
+                set_transient( $cache_key, $version_info, 3600 );
+            }
+
+            if( ! empty( $version_info ) && isset( $version_info->sections['changelog'] ) ) {
+				echo '<div style="background:#fff; padding:10px;">' . $version_info->sections[ 'changelog' ] . '</div>';
 			}
 
 			exit;
