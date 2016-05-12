@@ -2,7 +2,7 @@
 
 /**
  * Plugin Name: rtMedia CubePoints
- * Plugin URI: https://rtcamp.com/products/rtmedia-cubepoints/
+ * Plugin URI: https://rtmedia.io/products/rtmedia-cubepoints/
  * Description: This plugin provides CubePoints integration with rtMedia.
  * Version: 1.1.1
  * Text Domain: rtmedia
@@ -42,7 +42,7 @@ if ( ! defined( 'RTMEDIA_CUBEPOINTS_VERSION' ) ) {
 
 if ( ! defined( 'EDD_RTMEDIA_CUBEPOINTS_STORE_URL' ) ) {
 	// this is the URL our updater / license checker pings. This should be the URL of the site with EDD installed
-	define( 'EDD_RTMEDIA_CUBEPOINTS_STORE_URL', 'https://rtcamp.com/' );
+	define( 'EDD_RTMEDIA_CUBEPOINTS_STORE_URL', 'https://rtmedia.io/' );
 }
 
 if ( ! defined( 'EDD_RTMEDIA_CUBEPOINTS_ITEM_NAME' ) ) {
@@ -99,7 +99,7 @@ function rtmedia_pubepoints_pro_active_notice() {
 	?>
 		<div class="error">
 			<p>
-				<strong>rtMedia CubePoints</strong> plugin cannot be activated with rtMedia Pro. Please <strong><a href="https://rtcamp.com/blog/rtmedia-pro-splitting-major-change" target="_blank">read this</a></strong> for more details. You may <strong><a href="https://rtcamp.com/premium-support/" target="_blank">contact support for help</a></strong>.
+				<strong>rtMedia CubePoints</strong> plugin cannot be activated with rtMedia Pro. Please <strong><a href="https://rtmedia.io/blog/rtmedia-pro-splitting-major-change/" target="_blank">read this</a></strong> for more details. You may <strong><a href="https://rtmedia.io/premium-support/" target="_blank">contact support for help</a></strong>.
 			</p>
 		</div>
 	<?php
