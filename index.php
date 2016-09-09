@@ -135,10 +135,10 @@ $rtmedia_cubepoints_details = array(
 	'rt_product_version'             => RTMEDIA_CUBEPOINTS_VERSION,
 	'rt_item_name'                   => EDD_RTMEDIA_CUBEPOINTS_ITEM_NAME,
 	'rt_license_hook'                => 'rtmedia_license_tabs',
-	'rt_product_text_domain'         => 'rtmedia'
+	'rt_product_text_domain'         => 'rtmedia',
 );
 
-new RTEDDLicense( $rtmedia_cubepoints_details );
+new RTEDDLicense_rtmedia_cubepoints( $rtmedia_cubepoints_details );
 
 /*
  * One click install/activate rtMedia.
