@@ -153,10 +153,10 @@ class RTMediaCubePointsMedia {
 			<?php foreach ( $rtmedia_points as $key => $val ) { ?>
 				<tr valign="top">
 					<th scope="row">
-						<label for="cp_rtmedia_value"><?php _e( ucfirst( str_replace( '_', ' ', $key ) ), 'cp' ); ?>:</label>
+						<label for="cp_rtmedia_points_<?php echo esc_attr( $key ); ?>"><?php _e( ucfirst( str_replace( '_', ' ', $key ) ), 'cp' ); ?>:</label>
 					</th>
 					<td valign="middle">
-						<input type="text" id="rtmedia_points" name="rtmedia_points[<?php echo $key; ?>]" value="<?php echo( $val['points']['cp_points'] ); ?>" size="30" />
+						<input type="text" id="cp_rtmedia_points_<?php echo esc_attr( $key ); ?>" name="rtmedia_points[<?php echo $key; ?>]" value="<?php echo( $val['points']['cp_points'] ); ?>" size="30" />
 					</td>
 				</tr>
 			<?php } ?>
