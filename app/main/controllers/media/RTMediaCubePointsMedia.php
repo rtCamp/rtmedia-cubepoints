@@ -148,15 +148,15 @@ class RTMediaCubePointsMedia {
 		$rtmedia_points = maybe_unserialize( get_site_option( 'rtmedia_points', array() ) );
 		?>
 		<br />
-		<h3 id="rtmedia-cp"><?php _e( 'Points for rtMedia', 'cp' ); ?></h3>
+		<h3 id="rtmedia-cp"><?php esc_html_e( 'Points for rtMedia', 'cp' ); ?></h3>
 		<table class="form-table">
 			<?php foreach ( $rtmedia_points as $key => $val ) { ?>
 				<tr valign="top">
 					<th scope="row">
-						<label for="cp_rtmedia_points_<?php echo esc_attr( $key ); ?>"><?php _e( ucfirst( str_replace( '_', ' ', $key ) ), 'cp' ); ?>:</label>
+						<label for="cp_rtmedia_points_<?php echo esc_attr( $key ); ?>"><?php echo esc_html( ucfirst( str_replace( '_', ' ', $key ) ) ); ?>:</label>
 					</th>
 					<td valign="middle">
-						<input type="text" id="cp_rtmedia_points_<?php echo esc_attr( $key ); ?>" name="rtmedia_points[<?php echo $key; ?>]" value="<?php echo( $val['points']['cp_points'] ); ?>" size="30" />
+						<input type="text" id="cp_rtmedia_points_<?php echo esc_attr( $key ); ?>" name="rtmedia_points[<?php echo esc_attr( $key ); ?>]" value="<?php echo esc_attr( $val['points']['cp_points'] ); ?>" size="30" />
 					</td>
 				</tr>
 			<?php } ?>
