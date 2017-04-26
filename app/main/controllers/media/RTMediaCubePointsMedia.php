@@ -19,14 +19,14 @@ class RTMediaCubePointsMedia {
 		'after_upload_video' => array( 'action' => 'rtmedia_after_add_video' ),
 		'after_album_create' => array( 'action' => 'rtmedia_after_add_album' ),
 		'after_playlist_create' => array( 'action' => 'rtmedia_after_add_playlist' ),
-		'after_media_rate' => array( 'action' => 'rtmedia_cubepoints_after_rating_media' ),
-		'after_media_download' => array( 'action' => 'rtmedia_cubepoints_before_download_media' ),
+		'after_media_rate' => array( 'action' => 'rtmedia_pro_after_rating_media' ),
+		'after_media_download' => array( 'action' => 'rtmedia_downloads_before_download_media' ),
 		'after_media_like' => array( 'action' => 'rtmedia_after_like_media' ),
 		'after_media_view' => array( 'action' => 'rtmedia_after_view_media' ),
 		'after_media_edit' => array( 'action' => 'rtmedia_after_edit_media' ),
 		'after_media_delete' => array( 'action' => 'rtmedia_after_delete_media' ),
 		'after_media_report' => array( 'action' => 'rtmedia_cubepoints_after_report_media' ),
-		'after_set_album_cover' => array( 'action' => 'rtmedia_cubepoints_after_set_album_cover' ),
+		'after_set_album_cover' => array( 'action' => 'rtmedia_pro_after_set_album_cover' ),
 		'after_set_featured' => array( 'action' => 'rtmedia_after_set_featured' ),
 		'after_comment' => array( 'action' => 'rtmedia_after_add_comment' ),
 		'after_edit_album' => array( 'action' => 'rtmedia_after_update_album' ),
@@ -148,15 +148,15 @@ class RTMediaCubePointsMedia {
 		$rtmedia_points = maybe_unserialize( get_site_option( 'rtmedia_points', array() ) );
 		?>
 		<br />
-		<h3 id="rtmedia-cp"><?php _e( 'Points for rtMedia', 'cp' ); ?></h3>
+		<h3 id="rtmedia-cp"><?php esc_html_e( 'Points for rtMedia', 'cp' ); ?></h3>
 		<table class="form-table">
 			<?php foreach ( $rtmedia_points as $key => $val ) { ?>
 				<tr valign="top">
 					<th scope="row">
-						<label for="cp_rtmedia_value"><?php _e( ucfirst( str_replace( '_', ' ', $key ) ), 'cp' ); ?>:</label>
+						<label for="cp_rtmedia_points_<?php echo esc_attr( $key ); ?>"><?php echo esc_html( ucfirst( str_replace( '_', ' ', $key ) ) ); ?>:</label>
 					</th>
 					<td valign="middle">
-						<input type="text" id="rtmedia_points" name="rtmedia_points[<?php echo $key; ?>]" value="<?php echo( $val['points']['cp_points'] ); ?>" size="30" />
+						<input type="text" id="cp_rtmedia_points_<?php echo esc_attr( $key ); ?>" name="rtmedia_points[<?php echo esc_attr( $key ); ?>]" value="<?php echo esc_attr( $val['points']['cp_points'] ); ?>" size="30" />
 					</td>
 				</tr>
 			<?php } ?>
