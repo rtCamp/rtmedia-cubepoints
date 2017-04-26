@@ -24,8 +24,8 @@ To pull changes subtree, run following command
 
 * First create **Product Details Array**.
 
-    For example 
-    
+    For example
+
     ```php
     $rtmedia_product_details = array(
 	    'rt_product_id' 				 => 'rtmedia_product',
@@ -45,14 +45,14 @@ To pull changes subtree, run following command
 	    'rt_product_text_domain' 		 => 'rt_product_text_domain'
     );
     ```
-    
-* Create an object of **`RTEDDLicense`** class
+
+* Create an object of **`RTEDDLicense_rtmedia_cubepoints`** class
 
     Use below code to create an object:
     ```php
-    new RTEDDLicense( $rtmedia_product_details );
+    new RTEDDLicense_rtmedia_cubepoints( $rtmedia_product_details );
     ```
-    
+
 
 
 ## Resources for subtree:

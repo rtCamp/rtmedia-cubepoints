@@ -1,8 +1,8 @@
 {
-  "name": "rtcamp/rtmedia-cubepoints",
+  "name": "rtmedia.io/rtmedia-cubepoints",
   "description": "Points management system for media activity by rtMedia",
   "keywords": ["wordpress", "plugin", "rtmedia", "buddypress", "cubepoints"],
-  "homepage": "https://rtcamp.com/products/rtmedia-cubepoints/",
+  "homepage": "https://rtmedia.io/products/rtmedia-cubepoints/",
   "license": "GPL-2.0",
   "authors": [
     {

@@ -1,10 +1,10 @@
 <?php
 
-/*
+/**
  * Plugin Name: rtMedia CubePoints
- * Plugin URI: https://rtcamp.com/products/rtmedia-cubepoints/
+ * Plugin URI: https://rtmedia.io/products/rtmedia-cubepoints/
  * Description: This plugin provides CubePoints integration with rtMedia.
- * Version: 1.1.1
+ * Version: 1.1.2
  * Text Domain: rtmedia
  * Author: rtCamp
  * Author URI: http://rtcamp.com/?utm_source=dashboard&utm_medium=plugin&utm_campaign=rtmedia-cubepoints
@@ -37,12 +37,16 @@ if ( ! defined( 'RTMEDIA_CUBEPOINTS_BASE_NAME' ) ) {
  * The version of the plugin
  */
 if ( ! defined( 'RTMEDIA_CUBEPOINTS_VERSION' ) ) {
-	define( 'RTMEDIA_CUBEPOINTS_VERSION', '1.1.1' );
+	/**
+	 * The version of the plugin
+	 */
+	define( 'RTMEDIA_CUBEPOINTS_VERSION', '1.1.2' );
 }
 
 // this is the URL our updater / license checker pings. This should be the URL of the site with EDD installed
 if ( ! defined( 'EDD_RTMEDIA_CUBEPOINTS_STORE_URL' ) ) {
-	define( 'EDD_RTMEDIA_CUBEPOINTS_STORE_URL', 'https://rtcamp.com/' );
+	// this is the URL our updater / license checker pings. This should be the URL of the site with EDD installed
+	define( 'EDD_RTMEDIA_CUBEPOINTS_STORE_URL', 'https://rtmedia.io/' );
 }
 
 // the name of your product. This should match the download name in EDD exactly
@@ -114,14 +118,11 @@ add_filter( 'rtmedia_class_construct', 'rtmedia_cubepoints_loader' );
  */
 function rtmedia_pubepoints_pro_active_notice() {
 	?>
-	<div class="error">
-		<p>
-			<strong>rtMedia CubePoints</strong> plugin cannot be activated with rtMedia Pro. Please <strong><a
-					href="https://rtcamp.com/blog/rtmedia-pro-splitting-major-change" target="_blank">read
-					this</a></strong> for more details. You may <strong><a href="https://rtcamp.com/premium-support/"
-			                                                               target="_blank">contact support for help</a></strong>.
-		</p>
-	</div>
+		<div class="error">
+			<p>
+				<strong>rtMedia CubePoints</strong> plugin cannot be activated with rtMedia Pro. Please <strong><a href="https://rtmedia.io/blog/rtmedia-pro-splitting-major-change/" target="_blank">read this</a></strong> for more details. You may <strong><a href="https://rtmedia.io/premium-support/" target="_blank">contact support for help</a></strong>.
+			</p>
+		</div>
 	<?php
 	// automatic deactivate plugin if rtMedia Pro is active and current user can deactivate plugin.
 	if ( current_user_can( 'activate_plugins' ) ) {
@@ -149,10 +150,10 @@ $rtmedia_cubepoints_details = array(
 	'rt_product_version'             => RTMEDIA_CUBEPOINTS_VERSION,
 	'rt_item_name'                   => EDD_RTMEDIA_CUBEPOINTS_ITEM_NAME,
 	'rt_license_hook'                => 'rtmedia_license_tabs',
-	'rt_product_text_domain'         => 'rtmedia'
+	'rt_product_text_domain'         => 'rtmedia',
 );
 
-new RTEDDLicense( $rtmedia_cubepoints_details );
+new RTEDDLicense_rtmedia_cubepoints( $rtmedia_cubepoints_details );
 
 /*
  * One click install/activate rtMedia.
