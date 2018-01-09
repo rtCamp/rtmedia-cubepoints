@@ -14,7 +14,8 @@ if ( !class_exists( 'RTEDDSLPluginUpdater' ) ) {
 		private $api_data               = array();
 		private $name                   = '';
 		private $slug                   = '';
-        private $version                = '';
+		private $version                = '';
+		private $cache_key              = '';
 		private $rt_product_text_domain = '';
 
 		/**
@@ -39,6 +40,7 @@ if ( !class_exists( 'RTEDDSLPluginUpdater' ) ) {
 			$this->name                   = $_plugin_file;
 			$this->slug                   = $plugin_basename_exploded[ 0 ];
 			$this->version                = $_api_data[ 'version' ];
+			$this->cache_key              = md5( 'rt_plugin_' . sanitize_key( $this->name ) . '_version_info' );
 			$this->rt_product_text_domain = $_api_data[ 'rt_product_text_domain' ];
             
             $edd_plugin_data[ $this->slug ] = $this->api_data;
@@ -91,7 +93,7 @@ if ( !class_exists( 'RTEDDSLPluginUpdater' ) ) {
 			}
 
 			if ( empty( $_transient_data->response ) || empty( $_transient_data->response[ $this->name ] ) ) {
-				$version_info = $this->api_request( 'plugin_latest_version', array( 'slug' => $this->slug ) );
+				$version_info = $this->get_plugin_info();
 
 				if ( false !== $version_info && is_object( $version_info ) && isset( $version_info->new_version ) ) {
 					$this->did_check = true;
@@ -329,6 +331,29 @@ if ( !class_exists( 'RTEDDSLPluginUpdater' ) ) {
 
 			exit;
 		}
+
+		/**
+		 * Get plugins information using license api.
+		 *
+		 * @return object Version information of plugin.
+		 */
+		public function get_plugin_info() {
+
+			// Get plugin information from transient.
+			$info = get_transient( $this->cache_key );
+
+			if ( empty( $info ) ) {
+				$info = $this->api_request( 'plugin_latest_version', array(
+					'slug' => $this->slug,
+				) );
+
+				// Set plugin information into transient for 3 hours.
+				set_transient( $this->cache_key, $info, 3 * HOUR_IN_SECONDS );
+			}
+
+			return $info;
+		}
+
 
 	}
 
