@@ -250,7 +250,7 @@ if( !function_exists( 'rtm_plugin_installer_plugin_upgrader_class' ) ) {
 
                 }
 
-                public function feedback( $string ) {
+                public function feedback( $string, ...$args ) {
 
                 }
 
